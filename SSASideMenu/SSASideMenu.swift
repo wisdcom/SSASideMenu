@@ -165,6 +165,7 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
         init(animationDuration: NSTimeInterval = 0.35,
 			panGestureEnabled: Bool = true,
 			panDirection: SSASideMenuPanDirection = .Edge,
+			type: SSASideMenuType = .Scale,
 			panMinimumOpenThreshold: UInt = 60,
 			menuViewControllerTransformation: CGAffineTransform = CGAffineTransformMakeScale(1.5, 1.5),
 			backgroundTransformation: CGAffineTransform = CGAffineTransformMakeScale(1.7, 1.7),
@@ -173,6 +174,7 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
             self.animationDuration = animationDuration
             self.panGestureEnabled = panGestureEnabled
             self.panDirection = panDirection
+			self.type = type
             self.panMinimumOpenThreshold = panMinimumOpenThreshold
             self.menuViewControllerTransformation = menuViewControllerTransformation
             self.backgroundTransformation = backgroundTransformation
