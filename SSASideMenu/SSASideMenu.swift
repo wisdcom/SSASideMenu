@@ -189,6 +189,7 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
         scaleBackgroundImageView = configuration.scaleBackground
         parallaxEnabled = configuration.parallaxEnabled
         bouncesHorizontally = configuration.bouncesHorizontally
+		statusBarStyle = configuration.statusBarStyle
     }
     
     func configure(configuration: ContentViewShadow) {
@@ -200,12 +201,13 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func configure(configuration: ContentViewEffect) {
+		contentViewFadeOutAlpha = configuration.alpha
         contentViewScaleValue = configuration.scale
-        contentViewFadeOutAlpha = configuration.alpha
         contentViewInLandscapeOffsetCenterX = configuration.landscapeOffsetX
         contentViewInPortraitOffsetCenterX = configuration.portraitOffsetX
         parallaxContentMinimumRelativeValue = configuration.minParallaxContentRelativeValue
         parallaxContentMaximumRelativeValue = configuration.maxParallaxContentRelativeValue
+		interactivePopGestureRecognizerEnabled = configuration.interactivePopGestureRecognizerEnabled
     }
     
     func configure(configuration: SideMenuOptions) {
