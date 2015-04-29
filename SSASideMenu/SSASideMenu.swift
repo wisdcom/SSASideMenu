@@ -100,6 +100,7 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
     
     struct MenuViewEffect {
         
+		var widthDelta: CGFloat = 0.0
         var fade: Bool = true
         var scale: Bool = true
         var scaleBackground: Bool = true
@@ -107,13 +108,16 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
         var bouncesHorizontally: Bool = true
         var statusBarStyle: SSAStatusBarStyle = .Black
         
-        init(fade: Bool = true,
+        init(
+			widthDelta: CGFloat = 0.0,
+			fade: Bool = true,
 			scale: Bool = true,
 			scaleBackground: Bool = true,
 			parallaxEnabled: Bool = true,
 			bouncesHorizontally: Bool = true,
 			statusBarStyle: SSAStatusBarStyle = .Black)
 		{
+			self.widthDelta = widthDelta
             self.fade = fade
             self.scale = scale
             self.scaleBackground = scaleBackground
@@ -184,6 +188,7 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
     
 	
     func configure(configuration: MenuViewEffect) {
+		menuViewWidthDelta = configuration.widthDelta
         fadeMenuView = configuration.fade
         scaleMenuView = configuration.scale
         scaleBackgroundImageView = configuration.scaleBackground
@@ -227,6 +232,7 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
     @IBInspectable var rightMenuViewStoryboardID: String?
     
     // MARK: Private Properties: MenuView & BackgroundImageView
+	@IBInspectable private var menuViewWidthDelta: CGFloat = 0.0
     @IBInspectable private var fadeMenuView: Bool =  true
     @IBInspectable private var scaleMenuView: Bool = true
     @IBInspectable private var scaleBackgroundImageView: Bool = true
@@ -670,7 +676,11 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
         if let viewController = targetViewController {
             
             addChildViewController(viewController)
-            viewController.view.frame = view.bounds
+			var viewFrame = view.bounds
+			if targetView == menuViewContainer {
+				viewFrame.size.width += menuViewWidthDelta
+			}
+            viewController.view.frame = viewFrame
             viewController.view.autoresizingMask = .FlexibleWidth | .FlexibleHeight
             targetView.addSubview(viewController.view)
             viewController.didMoveToParentViewController(self)
