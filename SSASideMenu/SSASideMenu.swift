@@ -84,8 +84,12 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
         var opacity: Float = 0.4
         var radius: Float = 8.0
         
-        init(enabled: Bool = true, color: UIColor = UIColor.blackColor(), offset: CGSize = CGSizeZero, opacity: Float = 0.4, radius: Float = 8.0) {
-            
+        init(enabled: Bool = true,
+			color: UIColor = UIColor.blackColor(),
+			offset: CGSize = CGSizeZero,
+			opacity: Float = 0.4,
+			radius: Float = 8.0)
+		{
             self.enabled = false
             self.color = color
             self.offset = offset
@@ -103,8 +107,13 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
         var bouncesHorizontally: Bool = true
         var statusBarStyle: SSAStatusBarStyle = .Black
         
-        init(fade: Bool = true, scale: Bool = true, scaleBackground: Bool = true, parallaxEnabled: Bool = true, bouncesHorizontally: Bool = true, statusBarStyle: SSAStatusBarStyle = .Black) {
-            
+        init(fade: Bool = true,
+			scale: Bool = true,
+			scaleBackground: Bool = true,
+			parallaxEnabled: Bool = true,
+			bouncesHorizontally: Bool = true,
+			statusBarStyle: SSAStatusBarStyle = .Black)
+		{
             self.fade = fade
             self.scale = scale
             self.scaleBackground = scaleBackground
@@ -124,8 +133,14 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
         var maxParallaxContentRelativeValue: Float = 25.0
         var interactivePopGestureRecognizerEnabled: Bool = true
         
-        init(alpha: Float = 1.0, scale: Float = 0.7, landscapeOffsetX: Float = 30, portraitOffsetX: Float = 30, minParallaxContentRelativeValue: Float = -25.0, maxParallaxContentRelativeValue: Float = 25.0, interactivePopGestureRecognizerEnabled: Bool = true) {
-            
+        init(alpha: Float = 1.0,
+			scale: Float = 0.7,
+			landscapeOffsetX: Float = 30,
+			portraitOffsetX: Float = 30,
+			minParallaxContentRelativeValue: Float = -25.0,
+			maxParallaxContentRelativeValue: Float = 25.0,
+			interactivePopGestureRecognizerEnabled: Bool = true)
+		{
             self.alpha = alpha
             self.scale = scale
             self.landscapeOffsetX = landscapeOffsetX
@@ -147,8 +162,14 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
         var backgroundTransformation: CGAffineTransform = CGAffineTransformMakeScale(1.7, 1.7)
         var endAllEditing: Bool = false
         
-        init(animationDuration: NSTimeInterval = 0.35, panGestureEnabled: Bool = true, panDirection: SSASideMenuPanDirection = .Edge, panMinimumOpenThreshold: UInt = 60, menuViewControllerTransformation: CGAffineTransform = CGAffineTransformMakeScale(1.5, 1.5), backgroundTransformation: CGAffineTransform = CGAffineTransformMakeScale(1.7, 1.7), endAllEditing: Bool = false) {
-            
+        init(animationDuration: NSTimeInterval = 0.35,
+			panGestureEnabled: Bool = true,
+			panDirection: SSASideMenuPanDirection = .Edge,
+			panMinimumOpenThreshold: UInt = 60,
+			menuViewControllerTransformation: CGAffineTransform = CGAffineTransformMakeScale(1.5, 1.5),
+			backgroundTransformation: CGAffineTransform = CGAffineTransformMakeScale(1.7, 1.7),
+			endAllEditing: Bool = false)
+		{
             self.animationDuration = animationDuration
             self.panGestureEnabled = panGestureEnabled
             self.panDirection = panDirection
