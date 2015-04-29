@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+
 extension UIViewController {
     
     var sideMenuViewController: SSASideMenu? {
@@ -40,6 +41,7 @@ extension UIViewController {
     }
 }
 
+
 @objc protocol SSASideMenuDelegate {
     
     optional func sideMenuDidRecognizePanGesture(sideMenu: SSASideMenu, recongnizer: UIPanGestureRecognizer)
@@ -49,6 +51,7 @@ extension UIViewController {
     optional func sideMenuDidHideMenuViewController(sideMenu: SSASideMenu, menuViewController: UIViewController)
     
 }
+
 
 class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
     
@@ -156,6 +159,7 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
+	
     func configure(configuration: MenuViewEffect) {
         fadeMenuView = configuration.fade
         scaleMenuView = configuration.scale
@@ -192,22 +196,22 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
         endAllEditing = configuration.endAllEditing
     }
     
-    // MARK : Storyboard Support
+    // MARK: Storyboard Support
     @IBInspectable var contentViewStoryboardID: String?
     @IBInspectable var leftMenuViewStoryboardID: String?
     @IBInspectable var rightMenuViewStoryboardID: String?
     
-    // MARK : Private Properties: MenuView & BackgroundImageView
+    // MARK: Private Properties: MenuView & BackgroundImageView
     @IBInspectable private var fadeMenuView: Bool =  true
     @IBInspectable private var scaleMenuView: Bool = true
     @IBInspectable private var scaleBackgroundImageView: Bool = true
     @IBInspectable private var parallaxEnabled: Bool = true
     @IBInspectable private var bouncesHorizontally: Bool = true
     
-    // MARK : Public Properties: MenuView
+    // MARK: Public Properties: MenuView
     @IBInspectable var statusBarStyle: SSAStatusBarStyle = .Black
     
-    // MARK : Private Properties: ContentView
+    // MARK: Private Properties: ContentView
     @IBInspectable private var contentViewScaleValue: Float = 0.7
     @IBInspectable private var contentViewFadeOutAlpha: Float = 1.0
     @IBInspectable private var contentViewInLandscapeOffsetCenterX: Float = 30.0
@@ -215,18 +219,18 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
     @IBInspectable private var parallaxContentMinimumRelativeValue: Float = -25.0
     @IBInspectable private var parallaxContentMaximumRelativeValue: Float = 25.0
     
-    // MARK : Public Properties: ContentView
+    // MARK: Public Properties: ContentView
     @IBInspectable var interactivePopGestureRecognizerEnabled: Bool = true
     @IBInspectable var endAllEditing: Bool = false
     
-    // MARK : Private Properties: Shadow for ContentView
+    // MARK: Private Properties: Shadow for ContentView
     @IBInspectable private var contentViewShadowEnabled: Bool = true
     @IBInspectable private var contentViewShadowColor: UIColor = UIColor.blackColor()
     @IBInspectable private var contentViewShadowOffset: CGSize = CGSizeZero
     @IBInspectable private var contentViewShadowOpacity: Float = 0.4
     @IBInspectable private var contentViewShadowRadius: Float = 8.0
     
-    // MARK : Public Properties: SideMenu
+    // MARK: Public Properties: SideMenu
     @IBInspectable var animationDuration: NSTimeInterval = 0.35
     @IBInspectable var panGestureEnabled: Bool = true
     @IBInspectable var panDirection: SSASideMenuPanDirection = .Edge
@@ -235,7 +239,7 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
     @IBInspectable var menuViewControllerTransformation: CGAffineTransform = CGAffineTransformMakeScale(1.5, 1.5)
     @IBInspectable var backgroundTransformation: CGAffineTransform = CGAffineTransformMakeScale(1.7, 1.7)
     
-    // MARK : Internal Private Properties
+    // MARK: Internal Private Properties
     
     weak var delegate: SSASideMenuDelegate?
     
@@ -253,7 +257,7 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
     
     private let backgroundImageView: UIImageView = UIImageView()
     
-    // MARK : Public Properties
+    // MARK: Public Properties
     
     var backgroundImage: UIImage? {
         willSet {
@@ -305,7 +309,7 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
     }
 
 
-    // MARK : Initializers
+    // MARK: Initializers
   
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -335,7 +339,7 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
         self.rightMenuViewController = rightMenuViewController
     }
     
-    //MARK : Present / Hide Menu ViewControllers
+    //MARK: Present / Hide Menu ViewControllers
     
     func _presentLeftMenuViewController() {
         presentMenuViewContainerWithMenuViewController(leftMenuViewController)
@@ -574,7 +578,7 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
         
     }
     
-    // MARK : ViewController life cycle
+    // MARK: ViewController life cycle
     
     override func awakeFromNib() {
         
@@ -635,7 +639,7 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
     }
  
     
-    // MARK : Setup
+    // MARK: Setup
     
     private func setupViewController(targetView: UIView, targetViewController: UIViewController?) {
         if let viewController = targetViewController {
@@ -655,7 +659,7 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
             targetViewController.removeFromParentViewController()
     }
     
-    // MARK : Layout
+    // MARK: Layout
     
     private func setupContentButton() {
         
@@ -696,7 +700,7 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
         
     }
     
-    //MARK : Helper Functions 
+    //MARK: Helper Functions 
     
     private func resetContentViewScale() {
         let t: CGAffineTransform = contentViewContainer.transform
@@ -721,7 +725,7 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
         
     }
     
-    // MARK : Motion Effects (Private)
+    // MARK: Motion Effects (Private)
     
     private func removeMotionEffects(targetView: UIView) {
         
@@ -783,7 +787,7 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
         
     }
     
-    // MARK : View Controller Rotation handler
+    // MARK: View Controller Rotation handler
     
     override func shouldAutorotate() -> Bool {
         
@@ -834,7 +838,7 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
     }
 
     
-    // MARK : Status Bar Appearance Management
+    // MARK: Status Bar Appearance Management
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         
@@ -907,7 +911,7 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
     }
 
     
-    // MARK : UIGestureRecognizer Delegate (Private)
+    // MARK: UIGestureRecognizer Delegate (Private)
     
     
     func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
