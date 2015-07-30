@@ -475,7 +475,7 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
         menuViewContainer.transform = CGAffineTransformIdentity
         
         if scaleBackgroundImageView {
-            if let backgroundImage = backgroundImage {
+            if backgroundImage != nil {
                 backgroundImageView.transform = CGAffineTransformIdentity
             }
         }
@@ -651,7 +651,7 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
             view.addGestureRecognizer(panGestureRecognizer)
         }
         
-        if let image = backgroundImage {
+        if backgroundImage != nil {
             if scaleBackgroundImageView {
                 backgroundImageView.transform = backgroundTransformation
             }
@@ -698,7 +698,7 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
     
     private func setupContentButton() {
         
-        if let contentButtonSuperView = contentButton.superview {
+        if contentButton.superview != nil {
             return
         } else {
             contentButton.addTarget(self, action: Selector("hideMenuViewController"), forControlEvents:.TouchUpInside)
@@ -766,7 +766,7 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
         
         do {
             for effect in targetView.motionEffects {
-                targetView.removeMotionEffect(effect as! UIMotionEffect)
+                targetView.removeMotionEffect(effect)
             }
         }
         
