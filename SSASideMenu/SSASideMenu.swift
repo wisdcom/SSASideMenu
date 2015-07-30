@@ -615,13 +615,13 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
         
         if iOS8 {
             if let cntentViewStoryboardID = contentViewStoryboardID {
-                contentViewController = storyboard?.instantiateViewControllerWithIdentifier(cntentViewStoryboardID) as? UIViewController
+                contentViewController = storyboard?.instantiateViewControllerWithIdentifier(cntentViewStoryboardID)
             }
             if let lftViewStoryboardID = leftMenuViewStoryboardID {
-                leftMenuViewController = storyboard?.instantiateViewControllerWithIdentifier(lftViewStoryboardID) as? UIViewController
+                leftMenuViewController = storyboard?.instantiateViewControllerWithIdentifier(lftViewStoryboardID)
             }
             if let rghtViewStoryboardID = rightMenuViewStoryboardID {
-                rightMenuViewController = storyboard?.instantiateViewControllerWithIdentifier(rghtViewStoryboardID) as? UIViewController
+                rightMenuViewController = storyboard?.instantiateViewControllerWithIdentifier(rghtViewStoryboardID)
             }
         }
         
@@ -764,8 +764,8 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
     
     private func removeMotionEffects(targetView: UIView) {
         
-        if let targetViewMotionEffects = targetView.motionEffects {
-            for effect in targetViewMotionEffects {
+        do {
+            for effect in targetView.motionEffects {
                 targetView.removeMotionEffect(effect as! UIMotionEffect)
             }
         }
@@ -953,7 +953,7 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
         
         if interactivePopGestureRecognizerEnabled,
             let viewController = contentViewController as? UINavigationController
-            where viewController.viewControllers.count > 1 && viewController.interactivePopGestureRecognizer.enabled {
+            where viewController.viewControllers.count > 1 && (viewController.interactivePopGestureRecognizer?.enabled ?? false) {
                 return false
         }
         
