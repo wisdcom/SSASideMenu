@@ -919,7 +919,7 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
         
         var statusBarAnimation: UIStatusBarAnimation = .none
         
-        if let cntViewController = contentViewController, leftMenuViewController = leftMenuViewController {
+        if let cntViewController = contentViewController, let leftMenuViewController = leftMenuViewController {
             
             statusBarAnimation = visible ? leftMenuViewController.preferredStatusBarUpdateAnimation() : cntViewController.preferredStatusBarUpdateAnimation()
             
@@ -930,7 +930,7 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
             }
         }
         
-        if let cntViewController = contentViewController, rghtMenuViewController = rightMenuViewController {
+        if let cntViewController = contentViewController, let rghtMenuViewController = rightMenuViewController {
             
             statusBarAnimation = visible ? rghtMenuViewController.preferredStatusBarUpdateAnimation() : cntViewController.preferredStatusBarUpdateAnimation()
             
@@ -952,8 +952,8 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         
         if interactivePopGestureRecognizerEnabled,
-            let viewController = contentViewController as? UINavigationController
-            where viewController.viewControllers.count > 1 && (viewController.interactivePopGestureRecognizer?.isEnabled ?? false) {
+            let viewController = contentViewController as? UINavigationController,
+            viewController.viewControllers.count > 1 && (viewController.interactivePopGestureRecognizer?.isEnabled ?? false) {
                 return false
         }
         
