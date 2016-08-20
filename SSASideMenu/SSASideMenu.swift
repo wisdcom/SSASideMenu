@@ -79,13 +79,13 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
     struct ContentViewShadow {
         
         var enabled: Bool = true
-        var color: UIColor = UIColor.black()
+        var color: UIColor = UIColor.black
         var offset: CGSize = CGSize.zero
         var opacity: Float = 0.4
         var radius: Float = 8.0
         
         init(enabled: Bool = true,
-			color: UIColor = UIColor.black(),
+			color: UIColor = UIColor.black,
 			offset: CGSize = CGSize.zero,
 			opacity: Float = 0.4,
 			radius: Float = 8.0)
@@ -256,7 +256,7 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
     
     // MARK: Private Properties: Shadow for ContentView
     @IBInspectable private var contentViewShadowEnabled: Bool = true
-    @IBInspectable private var contentViewShadowColor: UIColor = UIColor.black()
+    @IBInspectable private var contentViewShadowColor: UIColor = UIColor.black
     @IBInspectable private var contentViewShadowOffset: CGSize = CGSize.zero
     @IBInspectable private var contentViewShadowOpacity: Float = 0.4
     @IBInspectable private var contentViewShadowRadius: Float = 8.0
@@ -441,7 +441,7 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
         setupContentViewShadow()
         resetContentViewScale()
         
-        UIApplication.shared().beginIgnoringInteractionEvents()
+        UIApplication.shared.beginIgnoringInteractionEvents()
     }
     
     
@@ -457,7 +457,7 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
             let centerXLandscape = CGFloat(contentViewInLandscapeOffsetCenterX) + (iOS8 ? CGFloat(view.frame.width) : CGFloat(view.frame.height))
             let centerXPortrait = CGFloat(contentViewInPortraitOffsetCenterX) + CGFloat(view.frame.width)
             
-            let centerX = UIDeviceOrientationIsLandscape(UIDevice.current().orientation) ?  centerXLandscape : centerXPortrait
+            let centerX = UIDeviceOrientationIsLandscape(UIDevice.current.orientation) ?  centerXLandscape : centerXPortrait
             
             contentViewContainer.center = CGPoint(x: centerX, y: contentViewContainer.center.y)
             
@@ -465,7 +465,7 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
             
             let centerXLandscape = -CGFloat(self.contentViewInLandscapeOffsetCenterX)
             let centerXPortrait = CGFloat(-self.contentViewInPortraitOffsetCenterX)
-            let centerX = UIDeviceOrientationIsLandscape(UIDevice.current().orientation) ? centerXLandscape : centerXPortrait
+            let centerX = UIDeviceOrientationIsLandscape(UIDevice.current.orientation) ? centerXLandscape : centerXPortrait
             
             contentViewContainer.center = CGPoint(x: centerX, y: contentViewContainer.center.y)
         }
@@ -503,7 +503,7 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
         }
         
         
-        UIApplication.shared().endIgnoringInteractionEvents()
+        UIApplication.shared.endIgnoringInteractionEvents()
         setupContentViewControllerMotionEffects()
     }
  
@@ -588,7 +588,7 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
         
         if animated {
             
-            UIApplication.shared().beginIgnoringInteractionEvents()
+            UIApplication.shared.beginIgnoringInteractionEvents()
             UIView.animate(withDuration: animationDuration, animations: { () -> Void in
                 
                 animationsClosure()
@@ -596,7 +596,7 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
                 }, completion: { (Bool) -> Void in
                     completionClosure()
                     
-                    UIApplication.shared().endIgnoringInteractionEvents()
+                    UIApplication.shared.endIgnoringInteractionEvents()
             })
             
         }else {
@@ -828,7 +828,7 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
         
         if let cntViewController = contentViewController {
             
-            return cntViewController.shouldAutorotate()
+            return cntViewController.shouldAutorotate
         }
         return false
         
@@ -854,14 +854,14 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
                 let centerXLandscape = CGFloat(contentViewInLandscapeOffsetCenterX) + (iOS8 ? CGFloat(view.frame.width) : CGFloat(view.frame.height))
                 let centerXPortrait = CGFloat(contentViewInPortraitOffsetCenterX) + CGFloat(view.frame.width)
                 
-                let centerX = UIDeviceOrientationIsLandscape(UIDevice.current().orientation) ?  centerXLandscape : centerXPortrait
+                let centerX = UIDeviceOrientationIsLandscape(UIDevice.current.orientation) ?  centerXLandscape : centerXPortrait
                 
                 center = CGPoint(x: centerX, y: contentViewContainer.center.y)
             } else {
                 
                 let centerXLandscape = -CGFloat(self.contentViewInLandscapeOffsetCenterX)
                 let centerXPortrait = CGFloat(-self.contentViewInPortraitOffsetCenterX)
-                let centerX = UIDeviceOrientationIsLandscape(UIDevice.current().orientation) ? centerXLandscape : centerXPortrait
+                let centerX = UIDeviceOrientationIsLandscape(UIDevice.current.orientation) ? centerXLandscape : centerXPortrait
                 center = CGPoint(x: centerX, y: contentViewContainer.center.y)
             }
             
@@ -889,7 +889,7 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
         }
         
         if visible || contentViewContainer.frame.origin.y <= 0, let cntViewController = contentViewController {
-            style = cntViewController.preferredStatusBarStyle()
+            style = cntViewController.preferredStatusBarStyle
         }
         
         return style
@@ -908,7 +908,7 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
             }
         
         if visible || contentViewContainer.frame.origin.y <= 0, let cntViewController = contentViewController {
-            statusBarHidden = cntViewController.prefersStatusBarHidden()
+            statusBarHidden = cntViewController.prefersStatusBarHidden
         }
         
         return statusBarHidden
@@ -921,23 +921,23 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
         
         if let cntViewController = contentViewController, let leftMenuViewController = leftMenuViewController {
             
-            statusBarAnimation = visible ? leftMenuViewController.preferredStatusBarUpdateAnimation() : cntViewController.preferredStatusBarUpdateAnimation()
+            statusBarAnimation = visible ? leftMenuViewController.preferredStatusBarUpdateAnimation : cntViewController.preferredStatusBarUpdateAnimation
             
             if contentViewContainer.frame.origin.y > 10 {
-                statusBarAnimation = leftMenuViewController.preferredStatusBarUpdateAnimation()
+                statusBarAnimation = leftMenuViewController.preferredStatusBarUpdateAnimation
             } else {
-                statusBarAnimation = cntViewController.preferredStatusBarUpdateAnimation()
+                statusBarAnimation = cntViewController.preferredStatusBarUpdateAnimation
             }
         }
         
         if let cntViewController = contentViewController, let rghtMenuViewController = rightMenuViewController {
             
-            statusBarAnimation = visible ? rghtMenuViewController.preferredStatusBarUpdateAnimation() : cntViewController.preferredStatusBarUpdateAnimation()
+            statusBarAnimation = visible ? rghtMenuViewController.preferredStatusBarUpdateAnimation : cntViewController.preferredStatusBarUpdateAnimation
             
             if contentViewContainer.frame.origin.y > 10 {
-                statusBarAnimation = rghtMenuViewController.preferredStatusBarUpdateAnimation()
+                statusBarAnimation = rghtMenuViewController.preferredStatusBarUpdateAnimation
             } else {
-                statusBarAnimation = cntViewController.preferredStatusBarUpdateAnimation()
+                statusBarAnimation = cntViewController.preferredStatusBarUpdateAnimation
             }
         }
         
@@ -1057,9 +1057,9 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
             
             // Limit size
             if point.x < 0 {
-                point.x = max(point.x, -UIScreen.main().bounds.size.height)
+                point.x = max(point.x, -UIScreen.main.bounds.size.height)
             } else {
-                point.x = min(point.x, UIScreen.main().bounds.size.height)
+                point.x = min(point.x, UIScreen.main.bounds.size.height)
             }
             
             recognizer.setTranslation(point, in: view)
