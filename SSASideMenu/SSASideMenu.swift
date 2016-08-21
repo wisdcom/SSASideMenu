@@ -824,7 +824,7 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
     
     // MARK: View Controller Rotation handler
     
-    override func shouldAutorotate() -> Bool {
+	override var shouldAutorotate: Bool {
         
         if let cntViewController = contentViewController {
             
@@ -875,7 +875,7 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
     
     // MARK: Status Bar Appearance Management
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+	override var preferredStatusBarStyle: UIStatusBarStyle {
         
         var style: UIStatusBarStyle
         
@@ -896,7 +896,7 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
         
     }
     
-    override func prefersStatusBarHidden() -> Bool {
+	override var prefersStatusBarHidden: Bool {
         
         var statusBarHidden: Bool
         
@@ -915,7 +915,7 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
     }
 
     
-    override func preferredStatusBarUpdateAnimation() -> UIStatusBarAnimation {
+	override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
         
         var statusBarAnimation: UIStatusBarAnimation = .none
         
@@ -1078,10 +1078,10 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
             if contentViewScale > 1 {
                 let oppositeScale: CGFloat = (1 - (contentViewScale - 1))
                 contentViewContainer.transform = CGAffineTransform(scaleX: oppositeScale, y: oppositeScale)
-                contentViewContainer.transform = contentViewContainer.transform.translateBy(x: point.x, y: 0)
+                contentViewContainer.transform = contentViewContainer.transform.translatedBy(x: point.x, y: 0)
             } else {
                 contentViewContainer.transform = CGAffineTransform(scaleX: contentViewScale, y: contentViewScale)
-                contentViewContainer.transform = contentViewContainer.transform.translateBy(x: point.x, y: 0)
+                contentViewContainer.transform = contentViewContainer.transform.translatedBy(x: point.x, y: 0)
             }
             
             leftMenuViewController?.view.isHidden = contentViewContainer.frame.origin.x < 0
